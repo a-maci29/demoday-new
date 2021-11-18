@@ -7,6 +7,13 @@ module.exports = function(app, passport, db) {
         res.render('index.ejs');
     });
 
+    //fetch to grab the data from the db to render into the ejs map in a loop
+    app.get('/migrationsapi', function(req, res) {
+      db.collection('migrations').find().toArray((err, result) => {
+        if (err) return console.log(err)
+        res.send(result)
+      })
+  });
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
         db.collection('messages').find().toArray((err, result) => {
@@ -113,3 +120,9 @@ function isLoggedIn(req, res, next) {
 
     res.redirect('/');
 }
+
+/*ITEMS FOR DATABASE
+const data = [
+  {people: 'manasota', start: 900, startera: 'BC', end: 500, endera: 'BCE'}
+]
+*/
