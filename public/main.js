@@ -1,3 +1,5 @@
+//const { json } = require("body-parser");
+
 
 
 const map = L.map('map').setView([21.346982, 105.326259], 5);
@@ -43,7 +45,7 @@ fetch('/migrationsapi', {
       console.log(circleEnd)
       console.log('result', result)
 
-    
+
       circle.bindTooltip(migrations[i].title, { permanent: true }).openTooltip();
       // circleEnd.bindTooltip(migrations[i].title, { permanent: true }).openTooltip(); //another function. this time, the argument will be the message that will appear inside the popup
       //.bindTooltip = another method, applied to the circle variable. 
@@ -52,21 +54,37 @@ fetch('/migrationsapi', {
 ${migrations[i].title}, ${migrations[i].people},
 <a href='${migrations[i].article}'>See full article</a>
 <span>See full article</span><br></br>
-`,
-        {});
-        
-        // circleEnd.bindPopup(`
-        // ${migrations[i].title}, ${migrations[i].people},
-        // <a href='${migrations[i].article}'>See full article</a>
-        // <span>See full article</span><br></br>
-        // `,
-                // {});//another function. this time, the argument will be the message that will appear inside the popup
+<button class="saveforlater" onclick="saveMigration(${migrations[i]._id}">Save for later reference</button>
+`, {});
+
+
+
+      // circleEnd.bindPopup(`
+      // ${migrations[i].title}, ${migrations[i].people},
+      // <a href='${migrations[i].article}'>See full article</a>
+      // <span>See full article</span><br></br>
+      // `,
+      // {});//another function. this time, the argument will be the message that will appear inside the popup
       //.bindTooltip = another method, applied to the circle variable.
 
     }
   }) //for loop ends here
 
-
+  //fetch function to send info to the server
+  function saveMigration(migrationId){
+    fetch('/saveMigration', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({migrationId: migrationId}) //the onclick method is saving the _id as the body for the fetch to happen.
+    })
+      .then(response => {
+        //show some kind of notice/alert/etc that the update happened
+        if (response.ok){
+        alert('saved')
+        return response.json()
+        }
+      }) 
+  }
 
 
 
@@ -93,7 +111,7 @@ ${migrations[i].title}, ${migrations[i].people},
         window.location.reload(true)
       })
   });
-}); 
+});
 
 Array.from(trash).forEach(function (element) {
   element.addEventListener('click', function () {

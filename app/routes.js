@@ -1,4 +1,4 @@
-module.exports = function(app, passport, db) {
+module.exports = function(app, passport, db, ObjectID) {
 
 // normal routes ===============================================================
 
@@ -63,6 +63,31 @@ module.exports = function(app, passport, db) {
       })
     })
 
+         /*taking the data from one object in the migrations database, and moving it with a user_id attached
+      /to a new collection that the logged in user can reference later via their profile page */
+       app.post('/saveMigration', isLoggedIn, (req, res) => {
+         db.collection('saveMigration').save({ migrationId : ObjectID(req.body.migrationId),
+          user:ObjectID(req.user._id )}, //corresponds to the fetchfunction in main.js. remember that mongoDB doesn't save as strings
+           (err, result) => {
+             if (err) return console.log(err)
+             console.log('saved to database')
+           })
+       });
+
+      // app.put('/userSaved', (req, res) => {
+      //   db.collection('userSaved')
+      //     .findOneAndUpdate(`${migrations[i]._id}`, {
+      //       $set: {
+      //       }
+      //     }, {
+      //       sort: { _id: -1 },
+      //       upsert: true
+      //     }, (err, result) => {
+      //       if (err) return res.send(err)
+      //       res.send(result)
+      //     })
+      // });
+
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
@@ -118,7 +143,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    res.redirect('/profile');
 }
 
 /*ITEMS FOR DATABASE
