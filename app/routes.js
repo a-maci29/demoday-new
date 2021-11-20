@@ -35,27 +35,27 @@ module.exports = function (app, passport, db, ObjectID) {
 
 
 
-  app.put('/messages', (req, res) => {
-    db.collection('messages')
-      .findOneAndUpdate({ name: req.body.name, msg: req.body.msg }, {
-        $set: {
-          thumbUp: req.body.thumbUp + 1
-        }
-      }, {
-        sort: { _id: -1 },
-        upsert: true
-      }, (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
-  })
+  // app.put('/messages', (req, res) => {
+  //   db.collection('messages')
+  //     .findOneAndUpdate({ name: req.body.name, msg: req.body.msg }, {
+  //       $set: {
+  //         thumbUp: req.body.thumbUp + 1
+  //       }
+  //     }, {
+  //       sort: { _id: -1 },
+  //       upsert: true
+  //     }, (err, result) => {
+  //       if (err) return res.send(err)
+  //       res.send(result)
+  //     })
+  // })
 
-  app.delete('/messages', (req, res) => {
-    db.collection('messages').findOneAndDelete({ name: req.body.name, msg: req.body.msg }, (err, result) => {
-      if (err) return res.send(500, err)
-      res.send('Message deleted!')
-    })
-  })
+  // app.delete('/messages', (req, res) => {
+  //   db.collection('messages').findOneAndDelete({ name: req.body.name, msg: req.body.msg }, (err, result) => {
+  //     if (err) return res.send(500, err)
+  //     res.send('Message deleted!')
+  //   })
+  // })
 
   /*taking the data from one object in the migrations database, and moving it with a user_id attached
 /to a new collection that the logged in user can reference later via their profile page */
@@ -69,6 +69,7 @@ module.exports = function (app, passport, db, ObjectID) {
           console.log(err)
         }
         console.log('saved to database')
+        res.send(200)
       })
   });
 
