@@ -54,7 +54,7 @@ fetch('/migrationsapi', {
 ${migrations[i].title}, ${migrations[i].people},
 <a href='${migrations[i].article}'>See full article</a>
 <span>See full article</span><br></br>
-<button class="saveforlater" onclick="saveMigration(${migrations[i]._id}">Save for later reference</button>
+<button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
 `, {});
 
 
@@ -72,6 +72,7 @@ ${migrations[i].title}, ${migrations[i].people},
 
   //fetch function to send info to the server
   function saveMigration(migrationId){
+    console.log('saveMigration');
     fetch('/saveMigration', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
