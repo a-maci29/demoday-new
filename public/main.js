@@ -15,6 +15,7 @@ var Stadia_OSMBright = L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_brigh
 
 map.addLayer(Stadia_OSMBright) //adding the map
 
+
 //^^creating a variable of the base map
 fetch('/migrationsapi', {
   method: 'get',
