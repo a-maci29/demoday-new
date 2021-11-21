@@ -83,7 +83,7 @@ module.exports = function (app, passport, db, ObjectID) {
 
    app.delete('/saveMigration', (req, res) => {
      db.collection('saveMigration')
-       .findOneAndDelete({migrationId: ObjectID(req.body.migrationId), userId: req.user._id}, (err, result) => {
+       .deleteMany({migrationId: ObjectID(req.body.migrationId), userId: req.user._id}, (err, result) => {
          if (err) return res.send(err)
          res.send(result)
        })

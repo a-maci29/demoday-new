@@ -113,8 +113,11 @@ ${migrations[i].title}, ${migrations[i].people},
   });
 });
 */
+const trash = document.querySelectorAll('.fa-trash')
+console.log(trash)
 Array.from(trash).forEach(function (element) {
-  element.addEventListener('click', function () {  
+  element.addEventListener('click', function () { 
+    console.log('button clicked') 
     fetch('/saveMigration', {
       method: 'delete',
       headers: {
