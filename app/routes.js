@@ -16,11 +16,18 @@ module.exports = function (app, passport, db, ObjectID) {
   });
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
-    db.collection('messages').find().toArray((err, result) => {
+    db.collection('saveMigration').find({userId:req.user._id}).toArray((err, savedMigrations) => {
       if (err) return console.log(err)
-      res.render('profile.ejs', {
-        user: req.user,
-        messages: result
+      const migrationIdArray = savedMigrations.map(migration => migration.migrationId)
+        console.log('returning migrationIdArray', migrationIdArray)
+      
+      db.collection('migrations').find({_id:{$in:migrationIdArray}}).toArray((err, migrations) => {
+        if (err) return console.log(err)
+        console.log('found migrations', migrations)
+        res.render('profile.ejs', {
+          user: req.user,
+          userSavedMigrations: migrations,
+        })
       })
     })
   });
@@ -60,6 +67,7 @@ module.exports = function (app, passport, db, ObjectID) {
   /*taking the data from one object in the migrations database, and moving it with a user_id attached
 /to a new collection that the logged in user can reference later via their profile page */
   app.post('/saveMigration', isLoggedIn, (req, res) => {
+    console.log('post to saveMigration')
     db.collection('saveMigration').save({
       migrationId: ObjectID(req.body.migrationId),
       userId: ObjectID(req.user._id)
@@ -69,23 +77,17 @@ module.exports = function (app, passport, db, ObjectID) {
           console.log(err)
         }
         console.log('saved to database')
-        res.send(200)
+        res.redirect('/profile')
       })
   });
 
-  // app.put('/userSaved', (req, res) => {
-  //   db.collection('userSaved')
-  //     .findOneAndUpdate(`${migrations[i]._id}`, {
-  //       $set: {
-  //       }
-  //     }, {
-  //       sort: { _id: -1 },
-  //       upsert: true
-  //     }, (err, result) => {
-  //       if (err) return res.send(err)
-  //       res.send(result)
-  //     })
-  // });
+   app.delete('/saveMigration', (req, res) => {
+     db.collection('saveMigration')
+       .findOneAndDelete({migrationId: ObjectID(req.body.migrationId), userId: req.user._id}, (err, result) => {
+         if (err) return res.send(err)
+         res.send(result)
+       })
+   });
 
   // =============================================================================
   // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -141,8 +143,9 @@ module.exports = function (app, passport, db, ObjectID) {
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
+    
 
-  res.redirect('/profile');
+  res.redirect('/login');
 }
 
 /*ITEMS FOR DATABASE

@@ -82,7 +82,6 @@ ${migrations[i].title}, ${migrations[i].people},
         //show some kind of notice/alert/etc that the update happened
         if (response.ok){
         alert('saved')
-        return response.json()
         }
       }) 
   }
@@ -113,23 +112,19 @@ ${migrations[i].title}, ${migrations[i].people},
       })
   });
 });
-
+*/
 Array.from(trash).forEach(function (element) {
-  element.addEventListener('click', function () {
-    const name = this.parentNode.parentNode.childNodes[1].innerText
-    const msg = this.parentNode.parentNode.childNodes[3].innerText
-    fetch('messages', {
+  element.addEventListener('click', function () {  
+    fetch('/saveMigration', {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        'name': name,
-        'msg': msg
+        migrationId : element.dataset.id,
       })
     }).then(function (response) {
       window.location.reload()
     })
   });
 });
-*/
