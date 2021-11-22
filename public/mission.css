@@ -1,10 +1,29 @@
 html {
   margin: none;
+  box-sizing: border-box;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+
+#header {
+  background-color: #232C33;
+  width: 100%;
+  color: white;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+
+h1 {
+  color: white;
+  margin: auto;
 }
 
 body{
   word-wrap:break-word;
   /*background: url("img/bg.jpg"); #12263A;*/
+  color: white;
   background-color:  #264653;
   padding: 2em, 0, 0em, 0;
   font-family: 'Zen Kaku Gothic New', sans-serif;
@@ -34,14 +53,6 @@ a {
   transition: ease-out 0.4s;
 }
 
-a:visited {
-  color: #cc3363;
-}
-
-a:hover {
-  color: #264653;
-}
-
 .slide_down:hover {
   box-shadow: inset 0 100px 0 0 #cc3363;
 }
@@ -69,18 +80,12 @@ a:hover {
   text-align: center;
   background: white;
   padding: 3em;
+  display: flex;
 
 }
 
-#info > h1 {
-  margin: none;
-}
-
-#map {
-  margin: auto;
-  height: 700px;
-  width: 900px;
-  padding: 2em;
+#info > .userSaved {
+  flex-direction: row;
 }
 
 #login {
