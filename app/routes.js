@@ -9,7 +9,7 @@ module.exports = function (app, passport, db, ObjectID) {
 
   //fetch to grab the data from the db to render into the ejs map in a loop
   app.get('/migrationsapi', function (req, res) {
-    db.collection('migrations').find().toArray((err, result) => {
+    db.collection('migrationBranches').find().toArray((err, result) => {
       if (err) return console.log(err)
       res.send(result)
     })
