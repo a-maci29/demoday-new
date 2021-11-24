@@ -34,6 +34,14 @@ a {
   transition: ease-out 0.4s;
 }
 
+a:visited {
+  color: #cc3363;
+}
+
+a:hover {
+  color: #264653;
+}
+
 .slide_down:hover {
   box-shadow: inset 0 100px 0 0 #cc3363;
 }
