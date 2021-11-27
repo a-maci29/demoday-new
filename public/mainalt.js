@@ -25,11 +25,11 @@ fetch('/migrationsapi', {
     if (response.ok) return response.json()
   })
   .then(migrations => {
-    console.log("migrations", migrations)
-    for (let i = 0; i < migrations.length; i++) {
-      let currentMigration = migrations[i]
-      console.log(i, currentMigration.startLat, migrations[i].startLong);
-      let circle = L.circle([migrations[i].startLat, migrations[i].startLong], { //the circle is a function requiring two arguments. in this case, the coordinates in the [] make up the first one, aka the location of the shape/center of the circle
+    console.log(migrations)
+    function makeNode(m, parent) {
+      console.log('makeNode', m, parent)
+      console.log(i, m.lat, m.long);
+      let circle = L.circle([m.lat, m.long], { //the circle is a function requiring two arguments. in this case, the coordinates in the [] make up the first one, aka the location of the shape/center of the circle
         color: 'red', //this block makes up the entirety of the second argument being passed through the circle function
         fillColor: '#f03',
         fillOpacity: 0.5,
@@ -38,48 +38,44 @@ fetch('/migrationsapi', {
       console.log('created circle', migrations[i].title, circle);
 
 
-      let circleEnd = L.circle([migrations[i].endLat, migrations[i].endLong], { //the circle is a function requiring two arguments. in this case, the coordinates in the [] make up the first one, aka the location of the shape/center of the circle
-        color: 'blue', //this block makes up the entirety of the second argument being passed through the circle function
-        fillColor: '#000',
-        fillOpacity: 0.5,
-        radius: 100000
-      })
-      const result = circleEnd.addTo(map);
-      console.log(circleEnd)
-      console.log('result', result)
 
-
-      circle.bindTooltip(migrations[i].title, { permanent: true }).openTooltip();
-      circleEnd.bindTooltip(migrations[i].title, { permanent: true }).openTooltip()
+      circle.bindTooltip(m.key, { permanent: true }).openTooltip();
       //another function. this time, the argument will be the message that will appear inside the popup
       //.bindTooltip = another method, applied to the circle variable. 
 
       let c = circle.bindPopup(`
-${migrations[i].title}, ${migrations[i].people},
-<a href='${migrations[i].article}'>See full article</a>
+${m.key}, ${'people'},
+<a href='article'>See full article</a>
 <span>See full article</span><br></br>
-<button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
+<button class="saveforlater" onclick="saveMigration('${m._id}')">Save for later reference</button>
 `, {});
-
-      circleEnd.bindPopup(`
-${migrations[i].title}, ${migrations[i].people},
-<a href='${migrations[i].articleEnd}'>See full article</a>
-<span>See full article</span><br></br>
-<button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
-`, {});
-    var pathLine = L.polyline([[migrations[i].startLat, migrations[i].startLong ], [migrations[i].endLat, migrations[i].endLong]]).addTo(map)
 
       console.log('bound popup', migrations[i].title, c)
+      if(parent){
+      var pathLine = L.polyline([[parent.lat, parent.long], [m.lat, m.long]]).addTo(map)
+      }
 
-      // circleEnd.bindPopup(`
-      // ${migrations[i].title}, ${migrations[i].people},
-      // <a href='${migrations[i].article}'>See full article</a>
-      // <span>See full article</span><br></br>
-      // `,
-      // {});//another function. this time, the argument will be the message that will appear inside the popup
-      //.bindTooltip = another method, applied to the circle variable.
+      for (let i = 0; i < m.branchKeys.length; i++) {
+        makeNode(migrations.find(x => x.key === m.branchKeys[i]), m)
+      }
 
     }
+    const rootNodes = migrations.filter(m => m.root)
+    console.log('rootNodes', rootNodes)
+    for (i = 0; i < rootNodes.length; i++) {
+      makeNode(rootNodes[i])
+
+    }
+
+    // circleEnd.bindPopup(`
+    // ${migrations[i].title}, ${migrations[i].people},
+    // <a href='${migrations[i].article}'>See full article</a>
+    // <span>See full article</span><br></br>
+    // `,
+    // {});//another function. this time, the argument will be the message that will appear inside the popup
+    //.bindTooltip = another method, applied to the circle variable.
+
+
   }) //for loop ends here
 
 //fetch function to send info to the server
