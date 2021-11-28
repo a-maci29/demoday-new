@@ -18,6 +18,13 @@ module.exports = function (app, passport, db, ObjectID) {
       res.send(result)
     })
   });
+
+  app.get('/migrationsapi', function (req, res) {
+    db.collection('arrowLines').find().toArray((err, result) => {
+      if (err) return console.log(err)
+      res.send(result)
+    })
+  });
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
     db.collection('saveMigration').find({userId:req.user._id}).toArray((err, savedMigrations) => {

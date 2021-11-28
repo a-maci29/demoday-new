@@ -1,7 +1,6 @@
 //const { json } = require("body-parser");
 
 
-
 const map = L.map('map').setView([21.346982, 105.326259], 5);
 //setTimeout(() =>{map.flyTo([10, 10], 3)},2000) //setTimeout method an anonymous function and the time as the two parameters
 //L = leaflet (the API)
@@ -50,12 +49,12 @@ fetch('/migrationsapi', {
 
 
       circle.bindTooltip(migrations[i].title, { permanent: true }).openTooltip();
-      circleEnd.bindTooltip(migrations[i].title, { permanent: true }).openTooltip()
+      // circleEnd.bindTooltip(migrations[i].title, { permanent: true }).openTooltip()
       //another function. this time, the argument will be the message that will appear inside the popup
       //.bindTooltip = another method, applied to the circle variable. 
 
       let c = circle.bindPopup(`
-${migrations[i].title}, ${migrations[i].people},
+${migrations[i].title}, ${migrations[i].caption},
 <a href='${migrations[i].article}'>See full article</a>
 <span>See full article</span><br></br>
 <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
@@ -67,9 +66,20 @@ ${migrations[i].title}, ${migrations[i].people},
 <span>See full article</span><br></br>
 <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
 `, {});
-    var pathLine = L.polyline([[migrations[i].startLat, migrations[i].startLong ], [migrations[i].endLat, migrations[i].endLong]]).addTo(map)
+    // var pathLine = L.polyline([[migrations[i].startLat, migrations[i].startLong ], [migrations[i].endLat, migrations[i].endLong]]).addTo(map)
 
-      console.log('bound popup', migrations[i].title, c)
+    //   console.log('bound popup', migrations[i].title, c)
+      
+
+      // c.bindPopup(`
+      // ${migrations[i].title}, ${migrations[i].people},
+      // <a href='${migrations[i].articleEnd}'>See full article</a>
+      // <span>See full article</span><br></br>
+      // <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
+      // `, {});
+      //     var pathLine = L.polyline([[migrations[i].startLat, migrations[i].startLong ], [migrations[i].endLat, migrations[i].endLong]]).addTo(map)
+      
+      //       console.log('bound popup', migrations[i].title, c)
 
       // circleEnd.bindPopup(`
       // ${migrations[i].title}, ${migrations[i].people},
@@ -81,6 +91,20 @@ ${migrations[i].title}, ${migrations[i].people},
 
     }
   }) //for loop ends here
+
+  var polyline = L.polyline([[23,120],[16,121]]);
+  var decorator = L.polylineDecorator(polyline, {
+    patterns: [
+      // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+      {
+        offset: 0,
+        repeat: 20,
+        symbol: L.Symbol.dash({
+          pixelSize: 10
+        })
+      }
+    ]
+  }).addTo(map);
 
 //fetch function to send info to the server
 function saveMigration(migrationId) {
@@ -96,6 +120,25 @@ function saveMigration(migrationId) {
         alert('saved')
       }
     })
+}
+
+let historyBg = ["img/backgrounds/bg-01.jpg", "img/backgrounds/bg-02.jpg", "img/backgrounds/bg-03.jpg"]
+// cards.sort(() => (Math.random() - 0.5 ));
+// let arr =  document.querySelectorAll('img')
+// let firstCard = null //<- 'firstCard' represents the first card of a specific match
+// arr.forEach((e,i) => e.src =  cards[i] )//'i' begins as card = 0 because it is the first iteration in the array
+
+document.getElementById("body").addEventListener('load', randombg)
+
+function randombg(){
+  historyBg.sort(() => (Math.random() - 0.5 ));
+  var bigSize = ["url('img/backgrounds/bg-01.jpg')",
+                 "url('img/backgrounds/bg-02.jpg')",
+                 "url('img/backgrounds/bg-03.jpg')",
+                 "url('img/backgrounds/bg-04.jpg')",
+                 "url('img/backgrounds/bg-05.jpg')",
+                 "url('img/backgrounds/bg-06.jpg')"];
+              
 }
 
 
