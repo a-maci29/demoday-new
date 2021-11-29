@@ -142,7 +142,7 @@ let historyBg = ["img/backgrounds/bg-01.jpg", "img/backgrounds/bg-02.jpg", "img/
 // let firstCard = null //<- 'firstCard' represents the first card of a specific match
 // arr.forEach((e,i) => e.src =  cards[i] )//'i' begins as card = 0 because it is the first iteration in the array
 
-document.getElementById("body").addEventListener('load', randombg)
+//document.getElementById("body").addEventListener('load', randombg)
 
 function randombg(){
   historyBg.sort(() => (Math.random() - 0.5 ));
