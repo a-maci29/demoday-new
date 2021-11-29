@@ -51,33 +51,24 @@ a:hover {
 }
 
 #nav {
-  width: 80%;
   color: white;
-  margin: auto;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .login {
   width: 50%;
-  display: flex;
   padding: 2em;
 }
 
 #navbar {
   width: 50%;
-  display: flex;
+  justify-content: flex-end;
 }
 
-#navbar > a {
-  width: 100%;
-  flex-direction: row;
-  justify-content: right;
-}
+
 
 #logo {
-  width: 50%;
-  display: flex;
+  width: 50%
 }
 
 #info {
