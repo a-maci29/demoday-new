@@ -13,17 +13,17 @@
   <div id="header">
     <nav id="nav">
       <img src="http://placekitten.com/g/100/100">
-      <a href="/" type="submit" class="slide_down">Home</a>
-      <a href="/profile" type="submit" class="slide_down">Login</a>
-      <div class="login">
-        <img src="" alt="">
+      <div id="navbar">
 
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-        </form>
-
+        <div class="login">
+          <a href="/signup" type="submit" class="slide_down">Signup</a>
+          <a href="/" type="submit" class="slide_down">Home</a>
+          <a href="/profile" type="submit" class="slide_down">Profile</a>
+          <a href="/mission" type="submit" class="slide_down">About</a>
+          <a href="/logout" class="slide_down">Logout</a>
+        </div>
       </div>
   </div>
-
 
 
   <!-- LOCAL INFORMATION -->
@@ -53,16 +53,38 @@
           <span>
             <%= userSavedMigrations[i].origins %>
           </span>
+
           <!-- <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
             <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span> -->
           <!--<span><i data-id="<%= userSavedMigrations[i]._id%>" class="fa fa-trash" aria-hidden="true"></i></span> -->
           <span>
-            <<button data-id="<%= userSavedMigrations[i]._id%>" class="fa fa-trash" aria-hidden="true">
+            <button data-id="<%= userSavedMigrations[i]._id%>" class="fa fa-trash" aria-hidden="true">
               DELETE</button>
+          </span>
+
+          <span>
+            <button data-id="<%= userSavedMigrations[i]._id%>" class="viewNote" aria-hidden="true">
+              Notes</button>
           </span>
         </li>
         <% } %>
     </ul>
+
+    <div id="popUpOverlay"></div>
+    <div id="popUpBox">
+      <div id="box">
+        <i class="fas fa-check-circle fa-5x"></i>
+        <h1>Here Goes Your Popup</h1>
+        <div data-migrationId="" id="notesPopup">
+          <input id="popupText" label="My Notes" type="text"></input>
+          <button id="notesPopupSave">Save Note</button>
+    
+          <div id="closePopup"></div>
+        </div>
+      </div>
+    </div>
+
+
 
     <h2>Add a message</h2>
     <% if (user.local.email) { %>

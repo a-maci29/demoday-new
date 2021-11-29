@@ -37,6 +37,16 @@ module.exports = function (app, passport, db, ObjectID) {
       })
     })
   });
+//gets notes that users have saved, if they exist in the db
+  app.get('/userNotes', isLoggedIn, function (req, res) {
+    db.collection('userSavedNotes').findOne({migrationId: ObjectID(req.body.migrationId),
+    userId: ObjectID(req.user._id)},
+    (err, saveNote) => {
+      if (err) return console.log(err)
+      res.json(saveNote)}
+    )}
+  )
+    
 
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {
@@ -94,6 +104,21 @@ module.exports = function (app, passport, db, ObjectID) {
          res.send(result)
        })
    });
+
+   //POST ROUTE TO SAVE AND UPDATE NOTES
+   app.post('/userNotes', isLoggedIn, (req, res) => {
+    console.log('note saved')
+    db.collection('saveMigration').save({
+      migrationId: ObjectID(req.body.migrationId),
+      userId: ObjectID(req.user._id)
+    },
+      (err, result) => {
+        if (err){
+          console.log(err)
+        }
+     
+      })
+  });
 
   // =============================================================================
   // AUTHENTICATE (FIRST LOGIN) ==================================================

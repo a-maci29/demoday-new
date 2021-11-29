@@ -1,16 +1,48 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>21 Savage Fan Site</title>
+    <title>DEMO DAY PROJECT</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="loginstyle.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Zen+Kaku+Gothic+New:wght@300;500&display=swap"
+        rel="stylesheet">
+
 </head>
+<body">
+    <div id="header">
+
+        <div id="nav">
+            <div id="logo">
+                <img src="http://placekitten.com/g/100/100">
+                <h1>Roam Around</h1>
+            </div>
+
+            <div id="navbar">
+
+                <div class="login">
+                    <a href="/signup" type="submit" class="slide_down">Signup</a>
+                    <a href="/login" type="submit" class="slide_down">Login</a>
+                    <a href="/profile" type="submit" class="slide_down">Profile</a>
+                    <a href="/mission" type="submit" class="slide_down">About</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 <body>
 <div class="container">
 <div class="col-sm-6 col-sm-offset-3">
 
-    <h1><span class="fa fa-sign-in"></span> Login</h1>
+    <a href="/login" type="submit" class="slide_down">Login</a>
 
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
@@ -27,7 +59,7 @@
             <input type="password" class="form-control" name="password">
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg">Login</button>
+        <button type="submit" class="slide_down">Login</button>
     </form>
 
     <hr>
