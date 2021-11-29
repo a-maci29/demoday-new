@@ -4,7 +4,7 @@ html {
 
 body{
   word-wrap:break-word;
-  background: url("img/backgrounds/bg-01.jpg") no-repeat;
+  background: url("img/backgrounds/bg-05.jpg") no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -19,11 +19,9 @@ body{
 #header {
   background-color: #232C33;
   width: 100%;
-  color: white;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  border-bottom: #cc3363 solid 1em;
+  height: 15%;
+  border-bottom: .5em solid #cc3363;
+
 }
 a {
   color: #264653;
@@ -55,16 +53,18 @@ a:hover {
 
 #nav {
   width: 80%;
+  padding: 1em 0em 1em 0em;
+  color: white;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  padding: 1em 0em 1em 0em;
+
 
 }
 
-#login {
-  width: 100%;
-  margin: auto;
+.login {
+  width: 30%;
+  margin: right;
 }
 
 
@@ -78,13 +78,11 @@ a:hover {
 
 }
 
-#info > h1 {
-  margin: none;
-}
+
 
 #map {
   margin: auto;
-  height: 700px;
+  height: 600px;
   width: 900px;
   padding: 2em;
 }

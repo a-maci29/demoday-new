@@ -49,7 +49,7 @@ fetch('/migrationsapi', {
 
 
       circle.bindTooltip(migrations[i].title, { permanent: true }).openTooltip();
-      // circleEnd.bindTooltip(migrations[i].title, { permanent: true }).openTooltip()
+      circleEnd.bindTooltip(migrations[i].title, { permanent: true }).openTooltip()
       //another function. this time, the argument will be the message that will appear inside the popup
       //.bindTooltip = another method, applied to the circle variable. 
 
@@ -61,11 +61,11 @@ ${migrations[i].title}, ${migrations[i].caption},
 `, {});
 
       circleEnd.bindPopup(`
-${migrations[i].title}, ${migrations[i].people},
-<a href='${migrations[i].articleEnd}'>See full article</a>
-<span>See full article</span><br></br>
-<button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
-`, {});
+// ${migrations[i].title}, ${migrations[i].people},
+// <a href='${migrations[i].article}'>See full article</a>
+// <span>See full article</span><br></br>
+// <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
+// `, {});
     // var pathLine = L.polyline([[migrations[i].startLat, migrations[i].startLong ], [migrations[i].endLat, migrations[i].endLong]]).addTo(map)
 
     //   console.log('bound popup', migrations[i].title, c)
@@ -89,22 +89,36 @@ ${migrations[i].title}, ${migrations[i].people},
       // {});//another function. this time, the argument will be the message that will appear inside the popup
       //.bindTooltip = another method, applied to the circle variable.
 
+          var polyline = L.polyline([[migrations[i].startLat, migrations[i].startLong],[migrations[i].endLat, migrations[i].endLong]]);
+    var decorator = L.polylineDecorator(polyline, {
+      patterns: [
+        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+        {
+          offset: 0,
+          repeat: 20,
+          symbol: L.Symbol.dash({
+            pixelSize: 10
+          })
+        }
+      ]
+    }).addTo(map);
     }
+
   }) //for loop ends here
 
-  var polyline = L.polyline([[23,120],[16,121]]);
-  var decorator = L.polylineDecorator(polyline, {
-    patterns: [
-      // defines a pattern of 10px-wide dashes, repeated every 20px on the line
-      {
-        offset: 0,
-        repeat: 20,
-        symbol: L.Symbol.dash({
-          pixelSize: 10
-        })
-      }
-    ]
-  }).addTo(map);
+  // var polyline = L.polyline([[23,120],[16,121]]);
+  // var decorator = L.polylineDecorator(polyline, {
+  //   patterns: [
+  //     // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+  //     {
+  //       offset: 0,
+  //       repeat: 20,
+  //       symbol: L.Symbol.dash({
+  //         pixelSize: 10
+  //       })
+  //     }
+  //   ]
+  // }).addTo(map);
 
 //fetch function to send info to the server
 function saveMigration(migrationId) {
