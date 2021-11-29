@@ -20,6 +20,7 @@ body{
   width: 100%;
   height: 15%;
   border-bottom: .5em solid #cc3363;
+  margin: auto;
 
 }
 a {
@@ -63,9 +64,15 @@ a:hover {
   padding: 2em;
 }
 
-.login > a {
-  width: 100%;
+#navbar {
+  width: 50%;
   display: flex;
+}
+
+#navbar > a {
+  width: 100%;
+  flex-direction: row;
+  justify-content: right;
 }
 
 #logo {
