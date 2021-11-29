@@ -9,8 +9,7 @@ body{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-blend-mode: overlay;
-  /*background: url("img/bg.jpg"); #12263A;*/
+  background-blend-mode:soft-light;
   background-color:  #264653;
   padding: 2em, 0, 0em, 0;
   font-family: 'Zen Kaku Gothic New', sans-serif;
@@ -32,7 +31,6 @@ a {
   display: inline-block;
   font-size: 1em;
   letter-spacing: 1px;
-  cursor: pointer;
   box-shadow: inset 0 0 0 0 #cc3363;
   -webkit-transition: ease-out 0.4s;
   -moz-transition: ease-out 0.4s;
@@ -53,20 +51,27 @@ a:hover {
 
 #nav {
   width: 80%;
-  padding: 1em 0em 1em 0em;
   color: white;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-
-
 }
 
 .login {
-  width: 30%;
-  margin: right;
+  width: 50%;
+  display: flex;
+  padding: 2em;
 }
 
+.login > a {
+  width: 100%;
+  display: flex;
+}
+
+#logo {
+  width: 50%;
+  display: flex;
+}
 
 #info {
   width: 80%;
@@ -85,10 +90,4 @@ a:hover {
   height: 600px;
   width: 900px;
   padding: 2em;
-}
-
-#login {
-  width: 50%;
-  margin: auto;
-  text-align: center;
 }
