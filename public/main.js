@@ -231,6 +231,8 @@ Array.from(userNotes).forEach(function (element) {
 });
 
 
+
+
 // function CustomAlert() {
 
 //   this.render = function () {
