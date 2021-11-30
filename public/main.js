@@ -32,7 +32,7 @@ fetch('/migrationsapi', {
         color: 'red', //this block makes up the entirety of the second argument being passed through the circle function
         fillColor: '#f03',
         fillOpacity: 0.5,
-        radius: 100000
+        radius: 70000
       }).addTo(map);
       console.log('created circle', migrations[i].title, circle);
 
@@ -41,29 +41,29 @@ fetch('/migrationsapi', {
         color: 'blue', //this block makes up the entirety of the second argument being passed through the circle function
         fillColor: '#000',
         fillOpacity: 0.5,
-        radius: 100000
+        radius: 70000
       })
       const result = circleEnd.addTo(map);
       console.log(circleEnd)
       console.log('result', result)
 
 
-      circle.bindTooltip(migrations[i].title, { permanent: true }).openTooltip();
-      circleEnd.bindTooltip(migrations[i].title, { permanent: true }).openTooltip()
+      // circle.bindTooltip(migrations[i].title, { permanent: true }).openTooltip();
+      // circleEnd.bindTooltip(migrations[i].title, { permanent: true }).openTooltip()
       //another function. this time, the argument will be the message that will appear inside the popup
       //.bindTooltip = another method, applied to the circle variable. 
 
       let c = circle.bindPopup(`
 ${migrations[i].title}, ${migrations[i].caption},
 <a href='${migrations[i].article}'>See full article</a>
-<span>See full article</span><br></br>
+<span></span><br></br>
 <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
 `, {});
 
       circleEnd.bindPopup(`
 // ${migrations[i].title}, ${migrations[i].people},
 // <a href='${migrations[i].article}'>See full article</a>
-// <span>See full article</span><br></br>
+// <span></span><br></br>
 // <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
 // `, {});
       // var pathLine = L.polyline([[migrations[i].startLat, migrations[i].startLong ], [migrations[i].endLat, migrations[i].endLong]]).addTo(map)

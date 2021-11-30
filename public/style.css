@@ -1,5 +1,6 @@
 html {
   margin: none;
+  scroll-behavior: smooth;
 }
 
 body{
@@ -15,7 +16,7 @@ body{
   font-family: 'Zen Kaku Gothic New', sans-serif;
 }
 
-#header {
+#header, #footer {
   background-color: #192732;
   width: 80%;
   height: 15%;
@@ -37,6 +38,7 @@ a {
   transition: ease-out 0.4s;
 }
 
+
 a:visited {
   color: #cc3363;
 }
@@ -49,9 +51,25 @@ a:hover {
   box-shadow: inset 0 100px 0 0 #cc3363;
 }
 
+a [href*="twitter.com/"] {
+  background:url(logos/twitter.png) contain;
+  padding-left:19px;
+  }
+
 #nav {
   width: 80%;
   margin: auto;
+}
+
+span {
+  margin: .5em;
+}
+
+#contact {
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  padding: .5em;
 }
 
 #navbar {
