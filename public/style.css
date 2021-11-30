@@ -16,10 +16,9 @@ body{
 }
 
 #header {
-  background-color: #232C33;
-  width: 100%;
+  background-color: #192732;
+  width: 80%;
   height: 15%;
-  border-bottom: .5em solid #cc3363;
   margin: auto;
 
 }
@@ -72,6 +71,7 @@ a:hover {
   background: white;
   padding: 2em;
   border: .3em solid #cc3363;
+  border-top: 1em solid #cc3363;
 
 }
 

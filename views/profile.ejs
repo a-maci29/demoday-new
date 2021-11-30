@@ -11,23 +11,31 @@
 <body>
 
   <div id="header">
-    <nav id="nav">
-      <img src="http://placekitten.com/g/100/100">
-      <div id="navbar">
 
-        <div class="login">
-          <a href="/signup" type="submit" class="slide_down">Signup</a>
-          <a href="/" type="submit" class="slide_down">Home</a>
-          <a href="/profile" type="submit" class="slide_down">Profile</a>
-          <a href="/mission" type="submit" class="slide_down">About</a>
-          <a href="/logout" class="slide_down">Logout</a>
+    <div id="nav">
+        <div id="logo">
+            <img src="http://placekitten.com/g/100/100">
+            <h1>Roam Around</h1>
         </div>
-      </div>
-  </div>
+
+        <div id="navbar">
+
+            <div class="login">
+                <a href="/signup" type="submit" class="slide_down">Home</a>
+                <a href="/signup" type="submit" class="slide_down">Signup</a>
+                <a href="/login" type="submit" class="slide_down">Login</a>
+                <a href="/logout" type="submit" class="slide_down">Logout</a>
+                <a href="/profile" type="submit" class="slide_down">Profile</a>
+                <a href="/mission" type="submit" class="slide_down">About</a>
+    
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
   <!-- LOCAL INFORMATION -->
-  <div class="well">
     <!-- <h3><span class="fa fa-user"></span> Local</h3>
 
         <% if (user.local.email) { %>
@@ -36,12 +44,11 @@
               <strong>email</strong>: <%= user.local.email %><br>
                 <strong>password</strong>: <%= user.local.password %>
           </p> -->
-
+<!-- 
     <a href="/unlink/local" class="btn btn-default">Unlink</a>
     <% } else { %>
       <a href="/connect/local" class="btn btn-default">Connect Local</a>
-      <% } %>
-  </div>
+      <% } %> -->
   <div id="info">
     <h3>Your saved items</h3>
     <ul class="userSaved">

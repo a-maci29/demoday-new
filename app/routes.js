@@ -7,8 +7,8 @@ module.exports = function (app, passport, db, ObjectID) {
     res.render('index.ejs');
   });
 
-  app.get('/mission', function (req, res) {
-    res.render('mission.ejs');
+  app.get('/about', function (req, res) {
+    res.render('about.ejs');
   });
 
   //fetch to grab the data from the db to render into the ejs map in a loop
