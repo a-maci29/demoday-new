@@ -24,6 +24,7 @@ body{
   margin: auto;
 
 }
+
 .leaflet-popup-content a {
   display: block;
 }
@@ -48,7 +49,7 @@ body{
 }
 
 
-/* a {
+.slide_down {
   color: #264653;
   background-color: #fafaff;
   border: .1em solid #cc3363;
