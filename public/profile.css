@@ -52,11 +52,6 @@ a:hover {
   box-shadow: inset 0 100px 0 0 #cc3363;
 }
 
-a[href*="twitter.com/"] {
-  background:url(".img/logos/twitter.png");
-  padding-left:19px;
-  }
-
 #nav {
   width: 80%;
   margin: auto;
@@ -81,6 +76,7 @@ span {
 #logo {
   display: flex;
   color: white;
+  justify-content: left;
 }
 
 #info {
