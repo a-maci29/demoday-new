@@ -61,8 +61,8 @@ ${migrations[i].title}, ${migrations[i].caption},
 `, {});
 
       circleEnd.bindPopup(`
-// ${migrations[i].title}, ${migrations[i].people},
-// <a href='${migrations[i].article}'>See full article</a>
+// ${migrations[i].title}, ${migrations[i].caption},
+// <a href='${migrations[i].articleEnd}'>See full article</a>
 // <span></span><br></br>
 // <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
 // `, {});
@@ -105,6 +105,15 @@ ${migrations[i].title}, ${migrations[i].caption},
     }
 
   }) //for loop ends here
+
+  function zoomToArea(area){
+    if(area === 'Southeast Asia'){
+      map.flyTo([21.346982, 105.326259], 5);
+    } else if(area === 'Central America'){
+      map.flyTo([16.62178758039309, -91.87169987798701]);
+    }
+
+  }
 
 // var polyline = L.polyline([[23,120],[16,121]]);
 // var decorator = L.polylineDecorator(polyline, {
