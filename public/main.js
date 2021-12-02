@@ -57,15 +57,17 @@ fetch('/migrationsapi', {
 ${migrations[i].title}, ${migrations[i].caption},
 <a href='${migrations[i].article}'>See full article</a>
 <span></span><br></br>
+<input id="notes:${migrations[i]._id}"></input>
 <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
 `, {});
 
       circleEnd.bindPopup(`
-// ${migrations[i].title}, ${migrations[i].caption},
-// <a href='${migrations[i].articleEnd}'>See full article</a>
-// <span></span><br></br>
-// <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
-// `, {});
+${migrations[i].title}, ${migrations[i].caption},
+ <a href='${migrations[i].articleEnd}'>See full article</a>
+ <span></span><br></br>
+ <input id="notes:${migrations[i]._id}"></input>
+ <button class="saveforlater" onclick="saveMigration('${migrations[i]._id}')">Save for later reference</button>
+  `, {});
       // var pathLine = L.polyline([[migrations[i].startLat, migrations[i].startLong ], [migrations[i].endLat, migrations[i].endLong]]).addTo(map)
 
       //   console.log('bound popup', migrations[i].title, c)
@@ -131,11 +133,13 @@ ${migrations[i].title}, ${migrations[i].caption},
 
 //fetch function to send info to the server
 function saveMigration(migrationId) {
+  const inputId = `notes:${migrationId}`
+  const input = document.getElementById(inputId)
   console.log('saveMigration');
   fetch('/saveMigration', {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ migrationId: migrationId }) //the onclick method is saving the _id as the body for the fetch to happen.
+    body: JSON.stringify({ migrationId: migrationId, notes:input.value }) //the onclick method is saving the _id as the body for the fetch to happen.
   })
     .then(response => {
       //show some kind of notice/alert/etc that the update happened
@@ -196,6 +200,7 @@ console.log(trash)
 Array.from(trash).forEach(function (element) {
   element.addEventListener('click', function () {
     console.log('button clicked')
+
     fetch('/saveMigration', {
       method: 'delete',
       headers: {

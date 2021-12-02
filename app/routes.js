@@ -25,14 +25,18 @@ module.exports = function (app, passport, db, ObjectID) {
     db.collection('saveMigration').find({userId:req.user._id}).toArray((err, savedMigrations) => {
       if (err) return console.log(err)
       const migrationIdArray = savedMigrations.map(migration => migration.migrationId)
-        console.log('returning migrationIdArray', migrationIdArray)
+        console.log('returning migrationIdArray', migrationIdArray, savedMigrations)
       
       db.collection('migrations').find({_id:{$in:migrationIdArray}}).toArray((err, migrations) => {
         if (err) return console.log(err)
+        for(let i=0; i < migrations.length; i++){
+          const saveMigration = savedMigrations.find(sm => sm.migrationId.equals(migrations[i]._id))
+          migrations[i].notes = saveMigration.notes
+        }
         console.log('found migrations', migrations)
         res.render('profile.ejs', {
           user: req.user,
-          userSavedMigrations: migrations,
+          userSavedMigrations: migrations
         })
       })
     })
@@ -83,10 +87,12 @@ module.exports = function (app, passport, db, ObjectID) {
   /*taking the data from one object in the migrations database, and moving it with a user_id attached
 /to a new collection that the logged in user can reference later via their profile page */
   app.post('/saveMigration', isLoggedIn, (req, res) => {
-    console.log('post to saveMigration')
+    console.log('post to saveMigration', req.body.notes)
     db.collection('saveMigration').save({
       migrationId: ObjectID(req.body.migrationId),
-      userId: ObjectID(req.user._id)
+      userId: ObjectID(req.user._id),
+      notes: req.body.notes
+
     }, //corresponds to the fetchfunction in main.js. remember that mongoDB doesn't save as strings
       (err, result) => {
         if (err){

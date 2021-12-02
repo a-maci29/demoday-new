@@ -38,33 +38,33 @@
             </div>
         </div>
     </div>
-    </div>
+
     <div id="content">
 
 
-            <% if (message.length> 0) { %>
-                <div class="alert alert-danger">
-                    <%= message %>
-                </div>
-                <% } %>
+        <% if (message.length> 0) { %>
+            <div class="alert alert-danger">
+                <%= message %>
+            </div>
+            <% } %>
 
-                    <!-- LOGIN FORM -->
-                    <form action="/login" method="post">
-                        <div class="form">
-                            <label>Email</label>
-                            <input type="text" class="form-control" name="email">
-                        </div>
-                        <div class="form">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password">
-                        </div>
+                <!-- LOGIN FORM -->
+                <form action="/login" method="post">
+                    <div class="form">
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                    <div class="form">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
 
-                        <button type="submit" class="slide_down">Login</button>
-                    </form>
+                    <button type="submit" class="slide_down">Login</button>
+                </form>
 
-                    <hr>
-                    <span>Lost?</span>
-                    <a href="/signup">Signup</a></p>
+                <hr>
+                <span>Lost?</span>
+                <a href="/signup" class="slide_down">Signup</a></p>
 
 
     </div>
