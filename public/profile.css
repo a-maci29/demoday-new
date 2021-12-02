@@ -1,6 +1,8 @@
 html {
   margin: none;
   scroll-behavior: smooth;
+  line-height: 1.15; 
+  -webkit-text-size-adjust: 100%;
 }
 
 #compass {
@@ -57,7 +59,6 @@ a {
   transition: ease-out 0.4s;
 }
 
-
 a:visited {
   color: #cc3363;
 }
@@ -108,24 +109,3 @@ span {
 
 }
 
-
-/*
-#notesPopup{
-  display: none;
-} */
-
-#popUpBox {
-width: 500px;
-overflow: hidden;
-background: pink;
-box-shadow: 0 0 10px black;
-border-radius: 10px;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-z-index: 9999;
-padding: 10px;
-text-align: center;
-display: none;
-}

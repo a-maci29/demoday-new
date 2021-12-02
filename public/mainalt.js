@@ -1,22 +1,13 @@
-//const { json } = require("body-parser");
-
-
 
 const map = L.map('map').setView([21.346982, 105.326259], 5);
-//setTimeout(() =>{map.flyTo([10, 10], 3)},2000) //setTimeout method an anonymous function and the time as the two parameters
-//L = leaflet (the API)
-//L.map([id of the div designated to be where the map is]) <--initialize map
-//.setView <- another method that is being called upon the map that is setting up the initial coordinates and the zoom level
+
 var Stadia_OSMBright = L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
   maxZoom: 20,
   attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 });
 
+map.addLayer(Stadia_OSMBright)
 
-map.addLayer(Stadia_OSMBright) //adding the map
-
-
-//^^creating a variable of the base map
 fetch('/migrationsapi', {
   method: 'get',
   headers: { 'Content-Type': 'application/json' },
@@ -29,19 +20,15 @@ fetch('/migrationsapi', {
     function makeNode(m, parent) {
       console.log('makeNode', m, parent)
       console.log(i, m.lat, m.long);
-      let circle = L.circle([m.lat, m.long], { //the circle is a function requiring two arguments. in this case, the coordinates in the [] make up the first one, aka the location of the shape/center of the circle
-        color: 'red', //this block makes up the entirety of the second argument being passed through the circle function
+      let circle = L.circle([m.lat, m.long], {
+        color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,
         radius: 100000
       }).addTo(map);
       console.log('created circle', migrations[i].title, circle);
 
-
-
       circle.bindTooltip(m.key, { permanent: true }).openTooltip();
-      //another function. this time, the argument will be the message that will appear inside the popup
-      //.bindTooltip = another method, applied to the circle variable. 
 
       let c = circle.bindPopup(`
 ${m.key}, ${'people'},
@@ -67,60 +54,24 @@ ${m.key}, ${'people'},
 
     }
 
-    // circleEnd.bindPopup(`
-    // ${migrations[i].title}, ${migrations[i].people},
-    // <a href='${migrations[i].article}'>See full article</a>
-    // <span>See full article</span><br></br>
-    // `,
-    // {});//another function. this time, the argument will be the message that will appear inside the popup
-    //.bindTooltip = another method, applied to the circle variable.
 
 
-  }) //for loop ends here
-
-//fetch function to send info to the server
+  }) 
 function saveMigration(migrationId) {
   console.log('saveMigration');
   fetch('/saveMigration', {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ migrationId: migrationId }) //the onclick method is saving the _id as the body for the fetch to happen.
+    body: JSON.stringify({ migrationId: migrationId })
   })
     .then(response => {
-      //show some kind of notice/alert/etc that the update happened
+     
       if (response.ok) {
         alert('saved')
       }
     })
 }
 
-
-
-
-/*Array.from(thumbUp).forEach(function (element) {
-  element.addEventListener('click', function () {
-    const name = this.parentNode.parentNode.childNodes[1].innerText
-    const msg = this.parentNode.parentNode.childNodes[3].innerText
-    const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-    fetch('messages', {
-      method: 'put',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        'name': name,
-        'msg': msg,
-        'thumbUp': thumbUp
-      })
-    })
-      .then(response => {
-        if (response.ok) return response.json()
-      })
-      .then(data => {
-        console.log(data)
-        window.location.reload(true)
-      })
-  });
-});
-*/
 const trash = document.querySelectorAll('.fa-trash')
 console.log(trash)
 Array.from(trash).forEach(function (element) {
