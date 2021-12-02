@@ -2,6 +2,16 @@ html {
   margin: none;
 }
 
+#compass {
+  max-width: 6em;
+}
+
+h1 {
+  font-family: 'Spectral SC', serif;
+  padding: 1%;
+  font-size: 2.5em;
+}
+
 body{
   word-wrap:break-word;
   /*background: url("img/bg.jpg"); #12263A;*/
@@ -10,13 +20,20 @@ body{
   font-family: 'Zen Kaku Gothic New', sans-serif;
 }
 
-#header {
-  background-color: #232C33;
-  width: 100%;
-  color: white;
+#header{
+  padding-top: 1%;
+  background-color: #192732;
+  width: 80%;
+  height: 15%;
   margin: auto;
-  display: flex;
-  flex-wrap: wrap;
+}
+
+#footer {
+
+  background-color: #192732;
+  width: 80%;
+  height: 15%;
+  margin: auto;
 }
 button {
   color: #264653;

@@ -3,6 +3,17 @@ html {
   scroll-behavior: smooth;
 }
 
+#compass {
+  max-width: 6em;
+}
+
+h1 {
+  font-family: 'Spectral SC', serif;
+  padding: 1%;
+  font-size: 2.5em;
+}
+
+
 h4 {
   font-size: 2em;
 }
@@ -20,14 +31,22 @@ body{
   font-family: 'Zen Kaku Gothic New', sans-serif;
 }
 
-#header {
+#header{
+  padding-top: 1%;
   background-color: #192732;
   width: 80%;
   height: 15%;
   margin: auto;
-
 }
-a {
+
+#footer {
+
+  background-color: #192732;
+  width: 80%;
+  height: 15%;
+  margin: auto;
+}
+.slide_down {
   color: #264653;
   background-color: #fafaff;
   border: .1em solid #cc3363;

@@ -3,6 +3,16 @@ html {
   scroll-behavior: smooth;
 }
 
+#compass {
+  max-width: 6em;
+}
+
+h1 {
+  font-family: 'Spectral SC', serif;
+  padding: 1%;
+  font-size: 2.5em;
+}
+
 body{
   word-wrap:break-word;
   background: url("img/backgrounds/bg-05.jpg") no-repeat;
@@ -17,12 +27,20 @@ body{
 
 }
 
-#header, #footer {
+#header{
+  padding-top: 1%;
   background-color: #192732;
   width: 80%;
   height: 15%;
   margin: auto;
+}
 
+#footer {
+
+  background-color: #192732;
+  width: 80%;
+  height: 15%;
+  margin: auto;
 }
 a {
   color: #264653;

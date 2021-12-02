@@ -16,16 +16,29 @@ body{
   font-family: 'Zen Kaku Gothic New', sans-serif;
 }
 
-h1 {
-  font-family: 'Spectral SC', serif;
+#compass {
+  max-width: 6em;
 }
 
-#header, #footer {
+h1 {
+  font-family: 'Spectral SC', serif;
+  padding: 1%;
+  font-size: 2.5em;
+}
+
+#header{
+  padding-top: 1%;
   background-color: #192732;
   width: 80%;
   height: 15%;
   margin: auto;
+}
 
+#footer {
+  background-color: #192732;
+  width: 80%;
+  height: 15%;
+  margin: auto;
 }
 
 #nav {
@@ -35,6 +48,12 @@ h1 {
   margin: auto;
 
 }
+
+#navbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .slide_down {
   color: #264653;
   background-color: #fafaff;
@@ -72,10 +91,12 @@ a:hover {
   justify-content: flex-end;
 }
 
+
 #logo {
   display: flex;
   color: white;
 }
+
 
 .slide_down:hover {
   box-shadow: inset 0 100px 0 0 #cc3363;
@@ -92,11 +113,6 @@ a:hover {
   border-top: 1em solid #cc3363;
 
 }
-
-#info > h1 {
-  margin: none;
-}
-
 
 
 #login {
